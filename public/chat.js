@@ -9,6 +9,8 @@ const room = document.getElementById('room');
 
   const roomName = document.getElementById('roomName');
   roomName.innerHTML = room.value;
+  const roomDiv =document.getElementById('roomDiv');
+    roomDiv.style.display = "none";
 });
 
 document.querySelector('form').addEventListener('submit', (event) => {

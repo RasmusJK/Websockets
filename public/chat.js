@@ -4,8 +4,9 @@ const socket = io();
 
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
+    const username = document.getElementById('u');
     const inp = document.getElementById('m');
-    socket.emit('chat message', inp.value);
+    socket.emit('chat message', username.value+": "+ inp.value);
     inp.value = '';
 });
 

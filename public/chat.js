@@ -2,6 +2,14 @@
 
 const socket = io();
 
+document.querySelector('join').addEventListener('click',event =>{
+event.preventDefault();
+const room = document.querySelector('room');
+  socket.emit('join',room.value);
+  const roomName = document.querySelector('roomName');
+  roomName.innerHTML = room.value;
+});
+
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
     const username = document.getElementById('u');

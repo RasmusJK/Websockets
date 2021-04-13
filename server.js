@@ -7,6 +7,8 @@ const io = require('socket.io')(http);
 
 app.use(express.static('public'));
 
+
+
 io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
 
@@ -14,12 +16,32 @@ io.on('connection', (socket) => {
         console.log('a user disconnected', socket.id);
     });
 
+
+    socket.on('join', room => {
+        socket.join(room);
+
     socket.on('chat message', (msg) => {
+
         console.log('message: ', msg);
-        io.emit('chat message', msg);
+      //  io.emit('chat message', msg);
+        io.sockets.in(room).emit('chat message', msg);
     });
 });
 
 http.listen(3000, () => {
     console.log('listening on port 3000');
 });
+
+/*
+io.on('connection', socket => {
+    console.log(`User connected: ${socket.id}`);
+
+    socket.on('join', room => {
+        socket.join(room);
+
+        socket.on('chatMessage', message => {
+            io.sockets.in(room).emit('chatMessage', message)
+        });
+    });
+});
+*/

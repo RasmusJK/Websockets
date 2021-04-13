@@ -2,11 +2,12 @@
 
 const socket = io();
 
-document.querySelector('join').addEventListener('click',event =>{
+document.getElementById('join').addEventListener('click',event =>{
 event.preventDefault();
-const room = document.querySelector('room');
+const room = document.getElementById('room');
   socket.emit('join',room.value);
-  const roomName = document.querySelector('roomName');
+
+  const roomName = document.getElementById('roomName');
   roomName.innerHTML = room.value;
 });
 
